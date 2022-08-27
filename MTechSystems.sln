@@ -7,13 +7,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{2CDB6A20-845
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{0DFD62BF-4DD3-4E3D-9CB9-5A7A8071E7A0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Employees.API", "src\Services\Employees.API\Employees.API.csproj", "{77A49C5A-E64F-4D14-BFA8-6A28E31614F4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Employees.API", "src\Services\Employees.API\Employees.API.csproj", "{77A49C5A-E64F-4D14-BFA8-6A28E31614F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Employees.Domain", "src\Services\Employees.Domain\Employees.Domain.csproj", "{0B26421F-07B7-4128-BA42-E36E05C62E00}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Employees.Domain", "src\Services\Employees.Domain\Employees.Domain.csproj", "{0B26421F-07B7-4128-BA42-E36E05C62E00}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Employees.Application", "src\Services\Employees.Application\Employees.Application.csproj", "{02305256-6E96-4B09-8D05-A1EB2105E617}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Employees.Application", "src\Services\Employees.Application\Employees.Application.csproj", "{02305256-6E96-4B09-8D05-A1EB2105E617}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Employees.Infraestructure", "src\Services\Employees.Infraestructure\Employees.Infraestructure.csproj", "{8ED92E1A-C0F6-445C-BEC7-21301CDCDDE7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Employees.Infraestructure", "src\Services\Employees.Infraestructure\Employees.Infraestructure.csproj", "{8ED92E1A-C0F6-445C-BEC7-21301CDCDDE7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

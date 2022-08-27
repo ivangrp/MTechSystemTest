@@ -1,12 +1,16 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Employees.Application.Employees.Commands.CreateEmployee;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Employees.API.Controllers
 {
-    public class EmployeesController : Controller
+    [Route("api/[controller]")]
+    [ApiController]
+    public class EmployeesController : ApiControllerBase
     {
-        public IActionResult Index()
+        [HttpPost]
+        public async Task<ActionResult<int>> Create(CreateEmployeeCommand command)
         {
-            return View();
+            return await Mediator.Send(command);
         }
     }
 }

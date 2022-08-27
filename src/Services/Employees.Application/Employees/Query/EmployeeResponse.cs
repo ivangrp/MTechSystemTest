@@ -1,13 +1,9 @@
 ﻿using Employees.Domain.Enums;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Employees.Domain.Entities
+namespace Employees.Application.Employees.Query
 {
-    public class Employee
+    public class EmployeeResponse
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
 
         public string Name { get; set; }
