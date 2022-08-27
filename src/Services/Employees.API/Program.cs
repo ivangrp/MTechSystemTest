@@ -1,11 +1,18 @@
+using Employees.API.Filters;
 using Employees.Application;
 using Employees.Infraestructure;
+using FluentValidation.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices(builder.Configuration);
+
+// Configuracion de excepciones
+builder.Services.AddControllersWithViews(options =>
+    options.Filters.Add<ApiExceptionFilterAttribute>())
+        .AddFluentValidation(x => x.AutomaticValidationEnabled = true);
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

@@ -2,7 +2,7 @@
 
 namespace Employees.Application.Employees.Query
 {
-    public class EmployeeResponse
+    public class EmployeeDto
     {
         public int ID { get; set; }
 

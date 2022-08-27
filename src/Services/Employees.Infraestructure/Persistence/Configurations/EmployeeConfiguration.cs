@@ -19,6 +19,8 @@ namespace Employees.Infraestructure.Persistence.Configurations
                 .IsRequired();
             builder.Property(t => t.Status)
                 .IsRequired();
+            builder.Property(t => t.BornDate)
+                .HasColumnType("datetime2");
         }
     }
 }

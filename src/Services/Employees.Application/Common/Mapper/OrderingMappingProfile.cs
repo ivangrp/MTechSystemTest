@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Employees.Application.Employees.Commands.CreateEmployee;
 using Employees.Application.Employees.Query;
 using Employees.Domain.Entities;
 
@@ -8,8 +9,8 @@ namespace Employees.Application.Common.Mapper
     {
         public OrderingMappingProfile()
         {
-            CreateMap<Employee, EmployeeResponse>().ReverseMap();
-            //CreateMap<Customer, CreateCustomerCommand>().ReverseMap();
+            CreateMap<Employee, EmployeeDto>().ReverseMap();
+            CreateMap<Employee, CreateEmployeeCommand>().ReverseMap();
             //CreateMap<Customer, EditCustomerCommand>().ReverseMap();
         }
     }
