@@ -7,9 +7,9 @@ using System.Data;
 
 namespace Employees.Infraestructure.Repository.Query
 {
-    internal class EmployeeQueryRepository : QueryRepository<Employee>, IEmployeeQueryRepository
+    public class EmployeeQueryRepository : QueryRepository<Employee>, IEmployeeQueryRepository
     {
-        protected EmployeeQueryRepository(IConfiguration configuration) 
+        public EmployeeQueryRepository(IConfiguration configuration) 
             : base(configuration)
         {
         }
@@ -22,7 +22,7 @@ namespace Employees.Infraestructure.Repository.Query
 
                 using (var connection = CreateConnection())
                 {
-                    return (await connection.QueryAsync<Employee>(query)).ToList();
+                    return (await connection.QueryAsync<Employee>(query)).OrderBy(r => r.BornDate).ToList();
                 }
             }
             catch (Exception exp)
@@ -50,7 +50,7 @@ namespace Employees.Infraestructure.Repository.Query
             }
         }
 
-        public async Task<Employee> GetEmployeeByName(string name)
+        public async Task<IReadOnlyList<Employee>> GetEmployeeByName(string name)
         {
             try
             {
@@ -60,7 +60,7 @@ namespace Employees.Infraestructure.Repository.Query
 
                 using (var connection = CreateConnection())
                 {
-                    return (await connection.QueryFirstOrDefaultAsync<Employee>(query, parameters));
+                    return (await connection.QueryAsync<Employee>(query, parameters)).ToList();
                 }
             }
             catch (Exception exp)

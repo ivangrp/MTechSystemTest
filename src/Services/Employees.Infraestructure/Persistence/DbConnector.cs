@@ -1,4 +1,4 @@
-﻿using Microsoft.Data.Sqlite;
+﻿using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using System.Data;
 
@@ -16,7 +16,7 @@ namespace Employees.Infraestructure.Persistence
         public IDbConnection CreateConnection()
         {
             string _connectionString = _configuration.GetConnectionString("DefaultConnection");
-            return new SqliteConnection(_connectionString);
+            return new SqlConnection(_connectionString);
         }
     }
 }

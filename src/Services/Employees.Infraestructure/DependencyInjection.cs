@@ -20,8 +20,8 @@ namespace Employees.Infraestructure
             services.AddScoped(typeof(IQueryRepository<>), typeof(QueryRepository<>));
             services.AddScoped(typeof(ICommandRepository<>), typeof(CommandRepository<>));
 
-            services.AddTransient<IEmployeeQueryRepository, EmployeeQueryRepository>();
             services.AddTransient<IEmployeeCommandRepository, EmployeeCommandRepository>();
+            services.AddTransient<IEmployeeQueryRepository, EmployeeQueryRepository>();
             
             return services;
         }

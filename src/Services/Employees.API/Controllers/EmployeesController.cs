@@ -14,6 +14,12 @@ namespace Employees.API.Controllers
             return await Mediator.Send(new GetAllEmployeesQuery());
         }
 
+        [HttpGet("{name}")]
+        public async Task<ActionResult<List<EmployeeDto>>> GetByName(string name)
+        {
+            return await Mediator.Send(new GetEmployeeByNameQuery(name));
+        }
+
         [HttpPost]
         public async Task<ActionResult<int>> Create(CreateEmployeeCommand command)
         {

@@ -6,6 +6,6 @@ namespace Employees.Application.Common.Interfaces
     {
         Task<IReadOnlyList<Employee>> GetAllAsync();
         Task<Employee> GetByIdAsync(Int64 id);
-        Task<Employee> GetEmployeeByName(string name);
+        Task<IReadOnlyList<Employee>> GetEmployeeByName(string name);
     }
 }

@@ -6,9 +6,10 @@ namespace Employees.Infraestructure.Repository.Query.Base
 {
     public class QueryRepository<T> : DbConnector, IQueryRepository<T> where T : class
     {
-        protected QueryRepository(IConfiguration configuration) 
+        public QueryRepository(IConfiguration configuration)
             : base(configuration)
         {
+
         }
     }
 }
