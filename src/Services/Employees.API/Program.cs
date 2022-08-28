@@ -12,7 +12,12 @@ builder.Services.AddInfrastructureServices(builder.Configuration);
 // Configuracion de excepciones
 builder.Services.AddControllersWithViews(options =>
     options.Filters.Add<ApiExceptionFilterAttribute>())
-        .AddFluentValidation(x => x.AutomaticValidationEnabled = true);
+        .AddFluentValidation(options =>
+        {
+            options.AutomaticValidationEnabled = true;
+            options.ImplicitlyValidateChildProperties = true;
+            options.ImplicitlyValidateRootCollectionElements = true;
+        });
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

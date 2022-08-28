@@ -22,10 +22,13 @@ namespace Employees.Application.Employees.Commands.CreateEmployee
     public class CreateEmployeeCommandHandler : IRequestHandler<CreateEmployeeCommand, int>
     {
         private readonly IEmployeeCommandRepository _employeeCommandRepository;
+        private readonly IEmployeeQueryRepository _employeeQueryRepository;
 
-        public CreateEmployeeCommandHandler(IEmployeeCommandRepository employeeCommandRepository)
+        public CreateEmployeeCommandHandler(IEmployeeCommandRepository employeeCommandRepository
+            , IEmployeeQueryRepository employeeQueryRepository)
         {
             _employeeCommandRepository = employeeCommandRepository;
+            _employeeQueryRepository = employeeQueryRepository;
         }
 
         public async Task<int> Handle(CreateEmployeeCommand request, CancellationToken cancellationToken)
@@ -35,6 +38,12 @@ namespace Employees.Application.Employees.Commands.CreateEmployee
             if (employeeEntity is null)
             {
                 throw new ArgumentException("There is a problem in mapper.");
+            }
+
+            var findRfc = await _employeeQueryRepository.GetByRfc(request.RFC);
+            if(findRfc is not null)
+            {
+                throw new ArgumentException($"The RFC {request.RFC} is in use.");
             }
 
             var newEmployee = await _employeeCommandRepository.AddAsync(employeeEntity);

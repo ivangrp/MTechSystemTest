@@ -50,6 +50,25 @@ namespace Employees.Infraestructure.Repository.Query
             }
         }
 
+        public async Task<Employee> GetByRfc(string rfc)
+        {
+            try
+            {
+                var query = "SELECT * FROM EMPLOYEES WHERE RFC = @rfc";
+                var parameters = new DynamicParameters();
+                parameters.Add("RFC", rfc, DbType.String);
+
+                using (var connection = CreateConnection())
+                {
+                    return (await connection.QueryFirstOrDefaultAsync<Employee>(query, parameters));
+                }
+            }
+            catch (Exception exp)
+            {
+                throw new Exception(exp.Message, exp);
+            }
+        }
+
         public async Task<IReadOnlyList<Employee>> GetEmployeeByName(string name)
         {
             try
