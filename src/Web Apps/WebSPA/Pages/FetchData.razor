@@ -1,0 +1,90 @@
+﻿@page "/fetchdata"
+@using WebSPA.Models
+@inject HttpClient Http
+@inject Infraestructure.Services.IEmployeeService
+
+<PageTitle>Employee</PageTitle>
+
+<h1>Weather forecast</h1>
+<br />
+@*<div class="row mb-3">
+    <div class="col-md-7">
+        @if(LoggedIn)
+        { 
+            <NavLink href="/person/createperson" class="btn btn-sm btn-success mb-2">Add Person</NavLink>
+        }
+    </div>
+    <div class="input-group col-md-5 text-md-right">
+        <input name="PersonSearchInput" type="text" class="form-control" placeholder="Person Name" @bind="this.SearchTerm" @onkeyup="SearchBoxKeyPress" />
+        <div class="input-group-btn">
+            <button name="PersonSearchButton" class="btn btn-default" @onclick="SearchClick">
+                <i class="oi oi-magnifying-glass" title="search" aria-hidden="true"></i>
+            </button>
+        </div>
+        <div class="input-group-btn">
+            <button name="PersonSearchClear" class="btn btn-default" @onclick="ClearSearch">
+                <i class="oi oi-x" title="clear" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+</div>*@
+
+@if (forecasts == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Temp. (C)</th>
+                <th>Temp. (F)</th>
+                <th>Summary</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var forecast in forecasts)
+            {
+                <tr>
+                    <td>@forecast.Date.ToShortDateString()</td>
+                    <td>@forecast.TemperatureC</td>
+                    <td>@forecast.TemperatureF</td>
+                    <td>@forecast.Summary</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    [Parameter]
+    public string Page { get; set;} = "1";
+    [Parameter]
+    public string SearchTerm { get; set; } = string.Empty;
+    protected PagedResult<Employee> employee;
+    
+    private WeatherForecast[]? forecasts;
+
+    protected override async Task OnInitializedAsync()
+    {
+        forecasts = await Http.GetFromJsonAsync<WeatherForecast[]>("sample-data/weather.json");
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+    }
+
+
+    public class WeatherForecast
+    {
+        public DateTime Date { get; set; }
+
+        public int TemperatureC { get; set; }
+
+        public string? Summary { get; set; }
+
+        public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+    }
+}
